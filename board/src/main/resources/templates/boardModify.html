@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정하기</title>
+</head>
+<link rel="stylesheet" th:href="@{/css/boardModify.css}">
+
+<body>
+<div id="wrapper">
+    <header>
+        <div class="board_header">
+            <h3>Metacoding</h3>
+            <p>글수정</p>
+        </div>
+    </header>
+    <main>
+        <div class="board_main">
+            <div>
+                <span>글수정</span>
+            </div>
+            <form th:action="@{/modify}" class="write_form" method ="post">
+                <table class="write_table">
+                    <colgroup>
+                        <col width="10%"/>
+                        <col width="90%"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>제목</th>
+                        <td>
+                            <input type="hidden" name="id" th:value="${boardDTO.getId()}">
+                            <input type="text" placeholder="제목을 입력하세요" name="title" maxlength="20" th:value="${boardDTO.getTitle()}">
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>내용</th>
+                        <td><textarea name="content" id="board_content" maxlength="20" th:text="${boardDTO.getContent()}"></textarea></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="write_btn">
+                <button type="submit" class="write_modi">수정하기</button>
+                <button type="button" class="write_cancel">취소하기</button>
+                </div>
+            </form>
+
+        </div>
+    </main>
+    <footer>
+        <div class="board_footer">
+            <span>야옹</span>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 메인</title>
+    <link rel="stylesheet" th:href="@{/css/boardList.css}">
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="board_header">
+            <h3>Metacoding</h3>
+            <p>글목록</p>
+        </div>
+    </header>
+    <main>
+        <div class="board_main">
+            <div>
+                <span>글목록</span>
+            </div>
+            <table class="board_list_table">
+                <colgroup>
+                    <col width="10%"/>
+                    <col width="20%"/>
+                    <col width="30%"/>
+                    <col width="15%"/>
+                    <col width="20%"/>
+                </colgroup>
+                <thead class="board_table_thead">
+                <tr>
+                    <td>글번호</td>
+                    <td>제목</td>
+                    <td>내용</td>
+                    <td>작성자</td>
+                    <td>수정삭제</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="board : ${boardDTOS}">
+                    <td th:text="${board.getId()}">1</td>
+                    <td th:text="${board.getTitle()}">제목이여요</td>
+                    <td th:text="${board.getContent()}">내용입니다</td>
+                    <td>익명</td>
+                    <td>
+                        <button class="board_update" th:attr="data-id=${board.getId()}">수정</button>
+                        <button class="board_delete" th:attr="data-id=${board.getId()}">삭제</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="pageNation">
+                <a th:href="@{/list(pg=${pageResponseDTO.pg - 1}, size=${pageResponseDTO.size})}"
+                   th:if="${pageResponseDTO.prev}" class="prev">이전</a>
+
+                <!-- 페이지 번호 표시 -->
+                <span th:each="pageNum : ${#numbers.sequence(pageResponseDTO.start, pageResponseDTO.end)}">
+                    <a th:href="@{/list(pg=${pageNum}, size=${pageResponseDTO.size})}"
+                       th:text="${pageNum}"
+                       th:classappend="${pageNum == pageResponseDTO.pg ? 'current' : ''}" class="current">
+                    </a>
+                </span>
+                <!-- 다음 페이지 버튼 -->
+                <a th:href="@{/list(pg=${pageResponseDTO.pg + 1}, size=${pageResponseDTO.size})}"
+                   th:if="${pageResponseDTO.next}" class="next">다음</a>
+            </div>
+            <div class="write_bt">
+                <div><a th:href="@{/write}" >글쓰기</a></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="board_footer">
+            <span>야옹</span>
+        </div>
+    </footer>
+</div>
+</body>
+<script>
+    const update = document.getElementsByClassName('board_update')[0];
+    update.addEventListener('click', function (e){
+        e.preventDefault();
+        const boardId = e.target.getAttribute('data-id');
+        window.location.href = `/modify/${boardId}`;
+
+    })
+
+    const boarddelete = document.getElementsByClassName('board_delete')[0];
+    boarddelete.addEventListener('click', function (e) {
+        e.preventDefault();
+        const boardId = e.target.getAttribute('data-id');
+        fetch(`delete/${boardId}`, { method: 'DELETE' })
+            .then(resp => {
+                if (!resp.ok) {
+                    throw new Error(`HTTP error! status: ${resp.status}`);
+                }
+                alert('삭제되었습니다.');
+                window.location.href = `/list`;
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('삭제에 실패했습니다.');
+            });
+    })
+
+</script>
+</html>

@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    font: normal 12px '돋움';}
+
+ul, ol {list-style: none;}
+a {text-decoration: none; color: #111;}
+input, textarea {outline: none;}
+
+#wrapper {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
+header {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+
+}
+.board_header {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: rgb(112, 158, 112);
+    color: white;
+    margin-bottom: 50px;
+}
+.board_header h3 {
+    padding: 10px;
+}
+.board_header p {
+    padding: 10px;
+}
+
+
+main {
+    width: 1200px;
+    height: auto;
+
+    margin: 0 auto;
+}
+.board_main {
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+
+}
+
+.write_form {
+    width: 1000px;
+    height: auto;
+    margin: 20px auto;
+
+}
+
+.write_table {
+    width: 1000px;
+    height: 600px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+.write_talbe th {
+    text-align: center;
+    background-color: rgb(112, 158, 112);
+
+}
+
+.write_table thead {
+    height: 70px;
+    border-top: 1px solid black;
+
+}
+
+.write_table thead input{
+    width: 500px;
+    height: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+
+.write_table tbody {
+    height: 600px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+.write_table tbody textarea {
+    padding: 10px;
+    width: 900px;
+    height: 500px;
+    border-radius: 8px;
+    border: 1px solid black;
+    resize: none;
+}
+
+
+.write_btn {
+    float: right;
+}
+
+
+footer {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
+.board_footer{
+    width: 1000px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: rgb(112, 158, 112);
+    margin-top: 50px;
+    color: white;
+}
+.board_footer span {
+    margin: 10px;
+}
+
