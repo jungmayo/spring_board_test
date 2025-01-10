@@ -37,8 +37,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="board : ${boardDTOS}">
-                    <td th:text="${board.getId()}">1</td>
+                <tr th:each="board, iterStat : ${boardDTOS}">
+                    <td th:text="${(pageResponseDTO.pg - 1) * pageResponseDTO.size + iterStat.index + 1}"></td>
                     <td th:text="${board.getTitle()}">제목이여요</td>
                     <td th:text="${board.getContent()}">내용입니다</td>
                     <td>익명</td>
